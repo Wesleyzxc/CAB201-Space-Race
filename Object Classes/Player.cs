@@ -67,6 +67,7 @@ namespace Object_Classes {
             }
         }
 
+
         private bool atFinish;
         public bool AtFinish {
             get {
@@ -118,9 +119,10 @@ namespace Object_Classes {
         /// Post: player object has name
         /// </summary>
         /// <param name="name">Name for this player</param>
-        public Player(String name)//, Square initialLocation)
+        public Player(String name, Square initialLocation)
         {
             Name = name;
+            this.Location = initialLocation;
         } // end Player constructor
 
         /// <summary>
@@ -129,7 +131,7 @@ namespace Object_Classes {
         ///     moves the player position on the board; 
         ///     updates the player's location to new position; and
         ///     determines the poutcome of landing on this square.
-        /// Pre: the dice are itialised
+        /// Pre: the dice are initialised
         /// Post: the player is moved along the board and the effect
         ///     of the location the player landed on is applied.
         /// </summary>
@@ -138,7 +140,17 @@ namespace Object_Classes {
         public void Play(Die d1, Die d2) {
 
             //  CODE NEEDS TO BE ADDED HERE
-
+            int steps;
+            d1.Roll();
+            d2.Roll();
+            steps = d1.FaceValue + d2.FaceValue;
+            this.Position += steps; //haven't add if wormhole / blackhole 
+            this.ConsumeFuel(2);
+            if (this.Position >= Board.FINISH_SQUARE_NUMBER)
+            {
+                this.Position = Board.FINISH_SQUARE_NUMBER;
+            }
+            // check if reach last square, play finish the round with remaining players end game if true
 
         } // end Play.
 
@@ -158,7 +170,7 @@ namespace Object_Classes {
                 fuelLeft = 0;
                 HasPower = false;
             }
-        } //end ConskeFuel;
+        } //end ConsumeFuel;
 
 
         /// <summary>
@@ -167,9 +179,12 @@ namespace Object_Classes {
         /// <returns>true if reached the Final Square</returns>
         private bool ReachedFinalSquare() {
 
-            //  CODE NEEDS TO BE ADDED HERE
-
-            return false; // so the class can compile without error
+            //  CODE NEEDS TO BE ADDED HERE // DONE
+            if (this.Position == Board.FINISH_SQUARE_NUMBER )
+            {
+                return true;
+            }
+            else return false; // so the class can compile without error
         } //end ReachedFinalSquare
 
 

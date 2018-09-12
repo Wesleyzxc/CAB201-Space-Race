@@ -2,7 +2,7 @@
 
 namespace Object_Classes {
     /// <summary>
-    /// A Ordinary square, the Start nd Finish squares as well as being the parent (superclass)
+    /// A Ordinary square, the Start and Finish squares as well as being the parent (superclass)
     ///  for a Blackhole Square and a Wormhole Square
     /// </summary>
     public class Square  {

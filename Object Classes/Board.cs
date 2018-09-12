@@ -98,15 +98,40 @@ namespace Object_Classes {
             squares[START_SQUARE_NUMBER] = new Square("Start", START_SQUARE_NUMBER);
 
             // Create the main part of the board, squares 1 .. 54
-            //  CODE NEEDS TO BE ADDED HERE
-            //
+            //  CODE NEEDS TO BE ADDED HERE // PARTIALLY DONE
+            for (int i = 1; i < (NUMBER_OF_SQUARES -1); i++)
+            {
+                for (int j = 0; j < blackHoles.Length; j++)
+                {
+                    if (i == blackHoles[j, 0])
+                    {
+                        int next = blackHoles[j, 1];
+                        int fuelConsumption = blackHoles[j, 2];
+
+                        squares[i] = new BlackholeSquare("blackhole", i, next, fuelConsumption); //double check array format
+                    }
+                }
+
+                for (int k = 0; k < wormHoles.Length; k++)
+                {
+                    if (i == wormHoles[k, 0])
+                    {
+                        int next = wormHoles[k, 1];
+                        int fuelConsumption = wormHoles[k, 2];
+                        squares[i] = new WormholeSquare("wormhole", i, next, fuelConsumption);
+                    }
+                }
+
+                squares[i] = new Square("ordinary", i);
+            }
             //   Need to call the appropriate constructor for each square
-            //       either new Square(...),  new WormholeSquare(...) or new BlackholeSquare(...)
+            //       either new Square(...),  new WormholeSquare(...) or new BlackholeSquare(...) //SOLVED
             //
 
             // Create the 'finish' square.
             squares[FINISH_SQUARE_NUMBER] = new Square("Finish", FINISH_SQUARE_NUMBER);
         } // end SetUpBoard
+
 
         /// <summary>
         /// Finds the destination square and the amount of fuel used for either a 
@@ -118,12 +143,29 @@ namespace Object_Classes {
         /// <param name="holes">a 2D array representing either the Wormholes or Blackholes squares information</param>
         /// <param name="squareNum"> a square number of either a Wormhole or Blackhole square</param>
         /// <param name="destNum"> destination square's number</param>
-        /// <param name="amount"> amont of fuel used to jump to the deestination square</param>
+        /// <param name="amount"> amount of fuel used to jump to the destination square</param>
         private static void FindDestSquare(int[,] holes, int squareNum, out int destNum, out int amount) {
             const int start = 0, exit = 1, fuel = 2;
             destNum = 0; amount = 0;
 
-            //  CODE NEEDS TO BE ADDED HERE 
+            //  CODE NEEDS TO BE ADDED HERE  // DONE
+            for (int i = 0; i < blackHoles.Length; i++)
+            {
+                if (squareNum == blackHoles[i, 0])
+                {
+                    destNum = blackHoles[i, 1];
+                    amount = blackHoles[i, 2];
+                }
+            }
+
+            for (int j = 0; j < wormHoles.Length; j++)
+            {
+                if (j == wormHoles[j, 0])
+                {
+                    destNum = wormHoles[j, 1];
+                    amount = wormHoles[j, 2];
+                }
+            }
 
         } //end FindDestSquare
 

@@ -17,7 +17,14 @@ namespace Space_Race
         /// <param name="args"></param>
         static void Main(string[] args)
         {      
-             DisplayIntroductionMessage();
+            DisplayIntroductionMessage();
+
+            Board.SetUpBoard();
+            Player P1 = new Player("One", Board.StartSquare);
+            Die D1 = new Die();
+            Die D2 = new Die();
+            P1.Play(D1, D2);
+            Console.WriteLine("{0:0}, {1:0}", P1.Position, P1.RocketFuel); //test function
             /*                    
              Set up the board in Board class (Board.SetUpBoard)
              Determine number of players - initally play with 2 for testing purposes 
