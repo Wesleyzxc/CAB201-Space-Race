@@ -20,6 +20,7 @@ namespace Space_Race
             DisplayIntroductionMessage();
 
             Board.SetUpBoard();
+
             /*                    
              Set up the board in Board class (Board.SetUpBoard)
              Determine number of players - initally play with 2 for testing purposes 

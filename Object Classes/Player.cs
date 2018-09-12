@@ -119,7 +119,7 @@ namespace Object_Classes {
         /// Post: player object has name
         /// </summary>
         /// <param name="name">Name for this player</param>
-        public Player(String name)
+        public Player(String name)//, Square initialLocation)
         {
             Name = name;
         } // end Player constructor

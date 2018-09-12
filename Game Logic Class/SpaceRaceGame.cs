@@ -74,7 +74,7 @@ namespace Game_Logic_Class
             /// </summary>
             public static void PlayOneRound() 
         {
-            for (int i = 0; i < players.Count; i++)
+            for (int i = 0; i < players.Count; i++) 
             { 
                 players[i].Play(die1, die2);
             }
