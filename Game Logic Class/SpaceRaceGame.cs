@@ -62,6 +62,10 @@ namespace Game_Logic_Class
             //      create a new player object
             //      initialize player's instance variables for start of a game
             //      add player to the binding list
+            for (int i = 0; i < NumberOfPlayers; i++)
+            {
+                players.Add(new Player(names[i])); // initialise and add to bindinglist
+            }
                 
         }
 
@@ -70,7 +74,10 @@ namespace Game_Logic_Class
             /// </summary>
             public static void PlayOneRound() 
         {
-
+            for (int i = 0; i < players.Count; i++)
+            { 
+                players[i].Play(die1, die2);
+            }
         }
 
     }//end SnakesAndLadders
