@@ -119,10 +119,9 @@ namespace Object_Classes {
         /// Post: player object has name
         /// </summary>
         /// <param name="name">Name for this player</param>
-        public Player(String name, Square initialLocation)
+        public Player(String name)//, Square initialLocation)
         {
             Name = name;
-            this.Location = initialLocation;
         } // end Player constructor
 
         /// <summary>
