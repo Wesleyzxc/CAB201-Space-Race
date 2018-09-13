@@ -22,3 +22,15 @@ C:\Users\Kok\Documents\GitHub\CAB201-Space-Race\Space Race\obj\Debug\Console Cla
 C:\Users\Kok\Documents\GitHub\CAB201-Space-Race\Space Race\obj\Debug\Console Class.csproj.CopyComplete
 C:\Users\Kok\Documents\GitHub\CAB201-Space-Race\Space Race\obj\Debug\Space Race.exe
 C:\Users\Kok\Documents\GitHub\CAB201-Space-Race\Space Race\obj\Debug\Space Race.pdb
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Space Race\obj\Debug\Console Class.csprojAssemblyReference.cache
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Space Race\obj\Debug\Console Class.csproj.CoreCompileInputs.cache
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Space Race\obj\Debug\Space Race.exe
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Space Race\obj\Debug\Space Race.pdb
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Space Race\bin\Debug\Space Race.exe.config
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Space Race\bin\Debug\Space Race.exe
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Space Race\bin\Debug\Space Race.pdb
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Space Race\bin\Debug\Game Logic Class.dll
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Space Race\bin\Debug\Object Classes.dll
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Space Race\bin\Debug\Game Logic Class.pdb
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Space Race\bin\Debug\Object Classes.pdb
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Space Race\obj\Debug\Console Class.csproj.CopyComplete
