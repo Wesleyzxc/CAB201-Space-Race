@@ -20,6 +20,7 @@ namespace Object_Classes {
                 name = value;
             }
         }
+
         //position on board
         private int position;
         public int Position {
@@ -122,14 +123,16 @@ namespace Object_Classes {
         public Player(String name)//, Square initialLocation)
         {
             Name = name;
+            fuelLeft = INITIAL_FUEL_AMOUNT;
         } // end Player constructor
+
 
         /// <summary>
         /// Rolls the two dice to determine 
-        ///     the number of squares to move forward;
+        ///     the number of squares to move forward; 
         ///     moves the player position on the board; 
         ///     updates the player's location to new position; and
-        ///     determines the poutcome of landing on this square.
+        ///     determines the outcome of landing on this square.
         /// Pre: the dice are initialised
         /// Post: the player is moved along the board and the effect
         ///     of the location the player landed on is applied.
@@ -143,14 +146,24 @@ namespace Object_Classes {
             d1.Roll();
             d2.Roll();
             steps = d1.FaceValue + d2.FaceValue;
-            this.Position += steps; //haven't add if wormhole / blackhole 
-            this.ConsumeFuel(2);
+            this.Position += steps;
+            
+            if (this.Location.Name != "wormhole" || this.Location.Name != "blackhole") // if ordinary hole // ERROR
+            {
+                this.ConsumeFuel(2);
+            }
+            //haven't add if wormhole / blackhole 
+            else if (this.Location.Name == "wormhole" || this.Location.Name == "blackhole")
+            {
+                this.Location.LandOn(this); // Square the player is on will run LandOn which updates location, position and remaining fuel
+            }
+
+            // check if reach last square, play finish the round with remaining players end game if true
             if (this.Position >= Board.FINISH_SQUARE_NUMBER)
             {
                 this.Position = Board.FINISH_SQUARE_NUMBER;
+                // add end game
             }
-            // check if reach last square, play finish the round with remaining players end game if true
-
         } // end Play.
 
 

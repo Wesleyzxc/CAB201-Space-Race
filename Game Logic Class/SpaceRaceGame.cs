@@ -12,7 +12,7 @@ namespace Game_Logic_Class
         public const int MAX_PLAYERS = 6;
    
         private static int numberOfPlayers = 2;  //default value for test purposes only 
-        public static int NumberOfPlayers
+        public static int NumberOfPlayers 
         {
             get
             {
@@ -62,11 +62,10 @@ namespace Game_Logic_Class
             //      create a new player object
             //      initialize player's instance variables for start of a game
             //      add player to the binding list
-            for (int i = 0; i < NumberOfPlayers; i++)
+            for (int i = 0; i <= NumberOfPlayers; i++)
             {
                 players.Add(new Player(names[i])); // initialise and add to bindinglist
             }
-                
         }
 
             /// <summary>
@@ -76,8 +75,10 @@ namespace Game_Logic_Class
         {
             for (int i = 0; i < players.Count; i++) 
             { 
-                players[i].Play(die1, die2);
+                players[i].Play(die1, die2); //ERROR
             }
+
+
         }
 
     }//end SnakesAndLadders

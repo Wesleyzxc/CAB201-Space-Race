@@ -23,3 +23,18 @@ C:\Sandpit\Student Project\Space Race\GUI Class\bin\Debug\Object Classes.dll
 C:\Sandpit\Student Project\Space Race\GUI Class\bin\Debug\Game Logic Class.pdb
 C:\Sandpit\Student Project\Space Race\GUI Class\bin\Debug\Object Classes.pdb
 C:\Sandpit\Student Project\Space Race\GUI Class\obj\Debug\GUI Class.csproj.CopyComplete
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\GUI Class\bin\Debug\GUI Class.exe.config
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\GUI Class\bin\Debug\GUI Class.exe
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\GUI Class\bin\Debug\GUI Class.pdb
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\GUI Class\bin\Debug\Game Logic Class.dll
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\GUI Class\bin\Debug\Object Classes.dll
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\GUI Class\bin\Debug\Game Logic Class.pdb
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\GUI Class\bin\Debug\Object Classes.pdb
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\GUI Class\obj\Debug\GUI Class.csprojAssemblyReference.cache
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\GUI Class\obj\Debug\GUI_Class.SpaceRaceForm.resources
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\GUI Class\obj\Debug\GUI_Class.Properties.Resources.resources
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\GUI Class\obj\Debug\GUI Class.csproj.GenerateResource.cache
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\GUI Class\obj\Debug\GUI Class.csproj.CoreCompileInputs.cache
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\GUI Class\obj\Debug\GUI Class.csproj.CopyComplete
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\GUI Class\obj\Debug\GUI Class.exe
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\GUI Class\obj\Debug\GUI Class.pdb

@@ -14,7 +14,7 @@ namespace Object_Classes {
             destination = next;
             fuelUsed = fuel;
         }
-
+        
 
         public override Square NextSquare() 
         {

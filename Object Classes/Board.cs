@@ -96,33 +96,27 @@ namespace Object_Classes {
 
             // Create the 'start' square where all players will start.
             squares[START_SQUARE_NUMBER] = new Square("Start", START_SQUARE_NUMBER);
-
             // Create the main part of the board, squares 1 .. 54
-            //  CODE NEEDS TO BE ADDED HERE // PARTIALLY DONE
-            for (int i = 1; i < (NUMBER_OF_SQUARES -1); i++)
+            //  CODE NEEDS TO BE ADDED HERE // DONE
+            int next, fuelConsumption;
+            for (int i = 1; i < (NUMBER_OF_SQUARES - 1); i++)
             {
-                for (int j = 0; j < blackHoles.Length; j++)
+                for (int j = 0; j < blackHoles.Length/3 -1; j++)
                 {
                     if (i == blackHoles[j, 0])
                     {
-                        int next = blackHoles[j, 1];
-                        int fuelConsumption = blackHoles[j, 2];
-
+                        FindDestSquare(blackHoles, i, out next, out fuelConsumption);
                         squares[i] = new BlackholeSquare("blackhole", i, next, fuelConsumption); //double check array format
                     }
-                }
-
-                for (int k = 0; k < wormHoles.Length; k++)
-                {
-                    if (i == wormHoles[k, 0])
+                    else if (i == wormHoles[j, 0])
                     {
-                        int next = wormHoles[k, 1];
-                        int fuelConsumption = wormHoles[k, 2];
+                        FindDestSquare(wormHoles, i, out next, out fuelConsumption);
                         squares[i] = new WormholeSquare("wormhole", i, next, fuelConsumption);
                     }
+
+                    else squares[i] = new Square("ordinary", i);
                 }
 
-                squares[i] = new Square("ordinary", i);
             }
             //   Need to call the appropriate constructor for each square
             //       either new Square(...),  new WormholeSquare(...) or new BlackholeSquare(...) //SOLVED
@@ -149,21 +143,17 @@ namespace Object_Classes {
             destNum = 0; amount = 0;
 
             //  CODE NEEDS TO BE ADDED HERE  // DONE
-            for (int i = 0; i < blackHoles.Length; i++)
+            for (int i = 0; i < holes.Length/3 -1; i++)
             {
-                if (squareNum == blackHoles[i, 0])
+                if (squareNum == holes[i,0])
                 {
-                    destNum = blackHoles[i, 1];
-                    amount = blackHoles[i, 2];
+                    destNum = holes[i, 1];
+                    amount = holes[i, 2];
                 }
-            }
 
-            for (int j = 0; j < wormHoles.Length; j++)
-            {
-                if (j == wormHoles[j, 0])
+                else
                 {
-                    destNum = wormHoles[j, 1];
-                    amount = wormHoles[j, 2];
+                    amount = fuel;
                 }
             }
 

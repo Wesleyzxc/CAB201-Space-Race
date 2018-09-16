@@ -7,3 +7,12 @@ C:\Sandpit\Student Project\Space Race\Game Logic Class\obj\Debug\Game Logic Clas
 C:\Sandpit\Student Project\Space Race\Game Logic Class\bin\Debug\Object Classes.dll
 C:\Sandpit\Student Project\Space Race\Game Logic Class\bin\Debug\Object Classes.pdb
 C:\Sandpit\Student Project\Space Race\Game Logic Class\obj\Debug\Game Logic Class.csproj.CopyComplete
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Game Logic Class\bin\Debug\Game Logic Class.dll
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Game Logic Class\bin\Debug\Game Logic Class.pdb
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Game Logic Class\bin\Debug\Object Classes.dll
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Game Logic Class\bin\Debug\Object Classes.pdb
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Game Logic Class\obj\Debug\Game Logic Class.csprojAssemblyReference.cache
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Game Logic Class\obj\Debug\Game Logic Class.csproj.CoreCompileInputs.cache
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Game Logic Class\obj\Debug\Game Logic Class.csproj.CopyComplete
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Game Logic Class\obj\Debug\Game Logic Class.dll
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Game Logic Class\obj\Debug\Game Logic Class.pdb

@@ -17,7 +17,7 @@ namespace Object_Classes {
         }
 
 
-        public override Square NextSquare() 
+        public override Square NextSquare() // used by LandOn
         { 
                 return Board.Squares[destination];
         }//end NextSquare
