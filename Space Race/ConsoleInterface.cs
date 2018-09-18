@@ -16,19 +16,37 @@ namespace Space_Race
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
-        {    
+        {
             DisplayIntroductionMessage();
             Board.SetUpBoard();
             Console.WriteLine("\nThis game is for 2 to 6 players.");
-            Console.WriteLine("How many players? (2-6): ");
+            Console.Write("How many players? (2-6): ");
+            int.TryParse(Console.ReadLine(), out int playerNum);
+            SpaceRaceGame.NumberOfPlayers = playerNum;
             // enter playerinput logic here
 
             SpaceRaceGame.SetUpPlayers();
-            Console.WriteLine("\n\nPress Enter to play a round ...");
-            Console.Read();
-            SpaceRaceGame.PlayOneRound(); 
-            Console.WriteLine("{0} on square {1} with {2} yottawatt of power remaining", SpaceRaceGame.Players[0].Name, SpaceRaceGame.Players[0].Position, SpaceRaceGame.Players[0].RocketFuel);
+            //Console.WriteLine("\n\nPress Enter to play a round ...");
+            //Console.Read();
+            //SpaceRaceGame.PlayOneRound();
+            //Console.WriteLine("{0} on square {1} with {2} yottawatt of power remaining", SpaceRaceGame.Players[0].Name, SpaceRaceGame.Players[0].Position, SpaceRaceGame.Players[0].RocketFuel);
+            //Console.WriteLine("{0} on square {1} with {2} yottawatt of power remaining", SpaceRaceGame.Players[1].Name, SpaceRaceGame.Players[1].Position, SpaceRaceGame.Players[1].RocketFuel);
 
+            for (int i = 0; i < SpaceRaceGame.Players.Count; i++)
+            {
+                if (!SpaceRaceGame.Players[i].AtFinish)
+                {
+                    Console.WriteLine("\n\nPress Enter to play a round ...");
+                    Console.Read();
+                    SpaceRaceGame.PlayOneRound();
+                    Console.WriteLine("{0} on square {1} with {2} yottawatt of power remaining", SpaceRaceGame.Players[0].Name, SpaceRaceGame.Players[0].Position, SpaceRaceGame.Players[0].RocketFuel);
+                    Console.WriteLine("{0} on square {1} with {2} yottawatt of power remaining", SpaceRaceGame.Players[1].Name, SpaceRaceGame.Players[1].Position, SpaceRaceGame.Players[1].RocketFuel);
+
+                }
+                break;
+            }
+            
+            
             Console.WriteLine("{0}", SpaceRaceGame.Players.Count);
             /*                    
              Set up the board in Board class (Board.SetUpBoard)

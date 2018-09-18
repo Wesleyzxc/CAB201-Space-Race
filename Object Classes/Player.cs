@@ -69,7 +69,7 @@ namespace Object_Classes {
         }
 
 
-        private bool atFinish;
+        private bool atFinish = false; // start with false
         public bool AtFinish {
             get {
                 return atFinish;
@@ -147,23 +147,10 @@ namespace Object_Classes {
             d2.Roll();
             steps = d1.FaceValue + d2.FaceValue;
             this.Position += steps;
-            
-            if (this.Location.Name != "wormhole" || this.Location.Name != "blackhole") // if ordinary hole // ERROR
-            {
-                this.ConsumeFuel(2);
-            }
-            //haven't add if wormhole / blackhole 
-            else if (this.Location.Name == "wormhole" || this.Location.Name == "blackhole")
-            {
-                this.Location.LandOn(this); // Square the player is on will run LandOn which updates location, position and remaining fuel
-            }
 
             // check if reach last square, play finish the round with remaining players end game if true
-            if (this.Position >= Board.FINISH_SQUARE_NUMBER)
-            {
-                this.Position = Board.FINISH_SQUARE_NUMBER;
-                // add end game
-            }
+            this.AtFinish = ReachedFinalSquare(); // will always be false until win, then true
+            
         } // end Play.
 
 
@@ -192,8 +179,9 @@ namespace Object_Classes {
         private bool ReachedFinalSquare() {
 
             //  CODE NEEDS TO BE ADDED HERE // DONE
-            if (this.Position == Board.FINISH_SQUARE_NUMBER )
+            if (this.Position >= Board.FINISH_SQUARE_NUMBER )
             {
+                this.Position = Board.FINISH_SQUARE_NUMBER;
                 return true;
             }
             else return false; // so the class can compile without error

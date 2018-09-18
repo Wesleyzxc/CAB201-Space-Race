@@ -82,7 +82,7 @@ namespace Object_Classes {
         // Returns a String representation of the dice's attributes.
         //----------------------------------------------------------------
        public override string ToString() {
-           string str = string.Format("{0}-Sided die showng {1}", numOfFaces, faceValue);
+           string str = string.Format("{0}-Sided die showing {1}", numOfFaces, faceValue);
            
            return str;
        }
