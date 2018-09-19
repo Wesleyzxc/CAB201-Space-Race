@@ -87,7 +87,7 @@ namespace Game_Logic_Class
                     }
                 }// end loop for check each squares
 
-                if (players[i].Location.Name != "wormhole" || players[i].Location.Name != "blackhole")
+                if (players[i].Location.Name == "ordinary")
                 {
                     players[i].ConsumeFuel(2);
                 }// if ordinary hole 

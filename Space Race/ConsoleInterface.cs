@@ -19,35 +19,42 @@ namespace Space_Race
         {
             DisplayIntroductionMessage();
             Board.SetUpBoard();
-            Console.WriteLine("\nThis game is for 2 to 6 players.");
-            Console.Write("How many players? (2-6): ");
-            int.TryParse(Console.ReadLine(), out int playerNum);
-            SpaceRaceGame.NumberOfPlayers = playerNum;
+
+            SpaceRaceGame.NumberOfPlayers = NumberOfPlayersInput();
             // enter playerinput logic here
 
             SpaceRaceGame.SetUpPlayers();
+            bool playerState = false;
+            
+
+            while (playerState == false)
+            {
+                Console.WriteLine("\n\nPress Enter to play a round ...");
+                Console.Read();
+                SpaceRaceGame.PlayOneRound();
+                DisplayCurrentPosition();
+                Console.Read();
+                for (int i = 0; i < SpaceRaceGame.Players.Count; i++)
+                {
+                    if (SpaceRaceGame.Players[i].AtFinish == true)
+                    {
+                        playerState = true;
+                        break;
+                    }
+                }
+            }
+
+            if (playerState == true)
+            {
+                DisplayWinMessage();
+            }
+
             //Console.WriteLine("\n\nPress Enter to play a round ...");
             //Console.Read();
             //SpaceRaceGame.PlayOneRound();
             //Console.WriteLine("{0} on square {1} with {2} yottawatt of power remaining", SpaceRaceGame.Players[0].Name, SpaceRaceGame.Players[0].Position, SpaceRaceGame.Players[0].RocketFuel);
             //Console.WriteLine("{0} on square {1} with {2} yottawatt of power remaining", SpaceRaceGame.Players[1].Name, SpaceRaceGame.Players[1].Position, SpaceRaceGame.Players[1].RocketFuel);
 
-            for (int i = 0; i < SpaceRaceGame.Players.Count; i++)
-            {
-                if (!SpaceRaceGame.Players[i].AtFinish)
-                {
-                    Console.WriteLine("\n\nPress Enter to play a round ...");
-                    Console.Read();
-                    SpaceRaceGame.PlayOneRound();
-                    Console.WriteLine("{0} on square {1} with {2} yottawatt of power remaining", SpaceRaceGame.Players[0].Name, SpaceRaceGame.Players[0].Position, SpaceRaceGame.Players[0].RocketFuel);
-                    Console.WriteLine("{0} on square {1} with {2} yottawatt of power remaining", SpaceRaceGame.Players[1].Name, SpaceRaceGame.Players[1].Position, SpaceRaceGame.Players[1].RocketFuel);
-
-                }
-                break;
-            }
-            
-            
-            Console.WriteLine("{0}", SpaceRaceGame.Players.Count);
             /*                    
              Set up the board in Board class (Board.SetUpBoard)
              Determine number of players - initally play with 2 for testing purposes 
@@ -60,8 +67,8 @@ namespace Space_Race
              Determine if anyone has won
              Output each player's details at end of the game
            */
-           
-                
+
+
             PressEnter();
             Console.Read();
 
@@ -75,7 +82,7 @@ namespace Space_Race
         /// </summary>
         static void DisplayIntroductionMessage()
         {
-            Console.WriteLine("Welcome to Space Race.\n");
+            Console.WriteLine("\n\tWelcome to Space Race.\n");
         } //end DisplayIntroductionMessage
 
         /// <summary>
@@ -89,7 +96,39 @@ namespace Space_Race
             Console.Read();
         } // end PressAny
 
+        static void StartRound()
+        {
+            
+        }
 
+        static void DisplayCurrentPosition()
+        {
+            for (int i = 0; i< SpaceRaceGame.Players.Count; i++)
+            {
+                Console.WriteLine("{0} on square {1} with {2} unobtainium of power remaining", SpaceRaceGame.Players[i].Name, SpaceRaceGame.Players[i].Position, SpaceRaceGame.Players[i].RocketFuel);
+            }
+        } // prints status
 
+        static int NumberOfPlayersInput()
+        {
+            Console.WriteLine("\n\tThis game is for 2 to 6 players.");
+            Console.Write("\tHow many players? (2-6): ");
+            int playerNum;
+            while (int.TryParse(Console.ReadLine(), out playerNum) != true || playerNum < 2 || playerNum > 6)
+            {
+                Console.WriteLine("\n\nError: invalid number of players entered.");
+                Console.WriteLine("\n\tThis game is for 2 to 6 players.");
+                Console.Write("\tHow many players? (2-6): ");
+
+            }
+
+            return playerNum;
+        }
+
+        static void DisplayWinMessage()
+        {
+            Console.WriteLine("Someone won");
+
+        }
     }//end Console class
 }

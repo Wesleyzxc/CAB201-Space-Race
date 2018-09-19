@@ -33,8 +33,9 @@ namespace Object_Classes {
         }
         
         private int initialFaceValue; //use only in Reset()
-    
-        private static Random random = new Random(100);
+
+        
+        private static Random random = new Random((int)DateTime.Now.Ticks);
     
 
        //-----------------------------------------------------------------

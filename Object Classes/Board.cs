@@ -1,13 +1,14 @@
 ﻿using System.Diagnostics;
 
-namespace Object_Classes {
+namespace Object_Classes
+{
     /// <summary>
     /// Models a game board for Space Race consisting of three different types of squares
     /// 
     /// Ordinary squares, Wormhole squares and Blackhole squares.
     /// 
     /// landing on a Wormhole or Blackhole square at the end of a player's move 
-    /// results in the player moving to another square
+    /// results in the playnder moving to another square
     /// 
     /// </summary>
     public static class Board {
@@ -76,7 +77,7 @@ namespace Object_Classes {
             {10, 4, 6},
             {26, 8, 18},
             {30, 19, 11},
-            {35,11, 24},
+            {35, 11, 24},
             {36, 34, 2},
             {49, 13, 36},
             {52, 41, 11},
@@ -107,11 +108,13 @@ namespace Object_Classes {
                     {
                         FindDestSquare(blackHoles, i, out next, out fuelConsumption);
                         squares[i] = new BlackholeSquare("blackhole", i, next, fuelConsumption); //double check array format
+                        break;
                     }
                     else if (i == wormHoles[j, 0])
                     {
                         FindDestSquare(wormHoles, i, out next, out fuelConsumption);
                         squares[i] = new WormholeSquare("wormhole", i, next, fuelConsumption);
+                        break;
                     }
 
                     else squares[i] = new Square("ordinary", i);
@@ -149,6 +152,7 @@ namespace Object_Classes {
                 {
                     destNum = holes[i, 1];
                     amount = holes[i, 2];
+                    break;
                 }
 
                 else

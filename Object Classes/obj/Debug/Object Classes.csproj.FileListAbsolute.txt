@@ -10,3 +10,9 @@ C:\QUT\CAB201\Space Race\CAB201-Space-Race\Object Classes\obj\Debug\Object Class
 C:\QUT\CAB201\Space Race\CAB201-Space-Race\Object Classes\obj\Debug\Object Classes.csproj.CoreCompileInputs.cache
 C:\QUT\CAB201\Space Race\CAB201-Space-Race\Object Classes\obj\Debug\Object Classes.dll
 C:\QUT\CAB201\Space Race\CAB201-Space-Race\Object Classes\obj\Debug\Object Classes.pdb
+D:\QUT\Sem 2\CAB201\Assignment1\Object Classes\bin\Debug\Object Classes.dll
+D:\QUT\Sem 2\CAB201\Assignment1\Object Classes\bin\Debug\Object Classes.pdb
+D:\QUT\Sem 2\CAB201\Assignment1\Object Classes\obj\Debug\Object Classes.csprojAssemblyReference.cache
+D:\QUT\Sem 2\CAB201\Assignment1\Object Classes\obj\Debug\Object Classes.csproj.CoreCompileInputs.cache
+D:\QUT\Sem 2\CAB201\Assignment1\Object Classes\obj\Debug\Object Classes.dll
+D:\QUT\Sem 2\CAB201\Assignment1\Object Classes\obj\Debug\Object Classes.pdb
