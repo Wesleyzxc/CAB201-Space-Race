@@ -32,22 +32,21 @@ namespace Space_Race
                 Console.WriteLine("\n\nPress Enter to play a round ...");
                 Console.Read();
                 SpaceRaceGame.PlayOneRound();
-                DisplayCurrentPosition();
-                Console.Read();
                 for (int i = 0; i < SpaceRaceGame.Players.Count; i++)
                 {
                     if (SpaceRaceGame.Players[i].AtFinish == true)
                     {
+                        DisplayWinMessage(SpaceRaceGame.Players[i]);
                         playerState = true;
                         break;
                     }
                 }
+                DisplayCurrentPosition();
+                Console.Read();
+                
             }
 
-            if (playerState == true)
-            {
-                DisplayWinMessage();
-            }
+
 
             //Console.WriteLine("\n\nPress Enter to play a round ...");
             //Console.Read();
@@ -103,9 +102,12 @@ namespace Space_Race
 
         static void DisplayCurrentPosition()
         {
-            for (int i = 0; i< SpaceRaceGame.Players.Count; i++)
+            for (int i = 0; i < SpaceRaceGame.Players.Count; i++)
             {
-                Console.WriteLine("{0} on square {1} with {2} unobtainium of power remaining", SpaceRaceGame.Players[i].Name, SpaceRaceGame.Players[i].Position, SpaceRaceGame.Players[i].RocketFuel);
+                if (SpaceRaceGame.Players[i].AtFinish == false)
+                {
+                    Console.WriteLine("{0} on square {1} with {2} unobtainium of power remaining", SpaceRaceGame.Players[i].Name, SpaceRaceGame.Players[i].Position, SpaceRaceGame.Players[i].RocketFuel);
+                }
             }
         } // prints status
 
@@ -125,10 +127,9 @@ namespace Space_Race
             return playerNum;
         }
 
-        static void DisplayWinMessage()
+        static void DisplayWinMessage(Player player)
         {
-            Console.WriteLine("Someone won");
-
+            Console.WriteLine("\n{0} won\n", player.Name);
         }
     }//end Console class
 }
