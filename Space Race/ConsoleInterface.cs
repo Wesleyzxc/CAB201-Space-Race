@@ -21,30 +21,16 @@ namespace Space_Race
             Board.SetUpBoard();
 
             SpaceRaceGame.NumberOfPlayers = NumberOfPlayersInput();
-            // enter playerinput logic here
-
             SpaceRaceGame.SetUpPlayers();
-            bool playerState = false;
-            
 
-            while (playerState == false)
+            StartRound();
+            string nextRound = YesNoInput();
+            while (nextRound == "Y" || nextRound == "y")
             {
-                Console.WriteLine("\n\nPress Enter to play a round ...");
-                Console.Read();
-                SpaceRaceGame.PlayOneRound();
-                for (int i = 0; i < SpaceRaceGame.Players.Count; i++)
-                {
-                    if (SpaceRaceGame.Players[i].AtFinish == true)
-                    {
-                        DisplayWinMessage(SpaceRaceGame.Players[i]);
-                        playerState = true;
-                        break;
-                    }
-                }
-                DisplayCurrentPosition();
-                Console.Read();
-                
+                NextGame();
+                nextRound = YesNoInput();
             }
+
 
 
 
@@ -97,7 +83,49 @@ namespace Space_Race
 
         static void StartRound()
         {
-            
+            bool playerState = false;
+
+
+            while (playerState == false)
+            {
+                Console.WriteLine("\n\nPress Enter to play a round ...");
+                Console.Read();
+                SpaceRaceGame.PlayOneRound();
+                for (int i = 0; i < SpaceRaceGame.Players.Count; i++)
+                {
+                    if (SpaceRaceGame.Players[i].AtFinish == true)
+                    {
+                        DisplayWinMessage(SpaceRaceGame.Players[i]);
+                        playerState = true;
+                        break;
+                    }
+
+                }
+
+                if (playerState == false) DisplayCurrentPosition();
+                
+                Console.Read();
+
+            }
+        }
+
+        static string YesNoInput()
+        {
+            Console.Write("\n\n\n\n\tPlay again? (Y or N): ");
+            string nextRound = Console.ReadLine();
+            return nextRound;
+        }
+
+
+        static void NextGame()
+        {
+            SpaceRaceGame.NumberOfPlayers = NumberOfPlayersInput();
+            for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
+            {
+                SpaceRaceGame.Players.Clear();
+            }
+            SpaceRaceGame.SetUpPlayers();
+            StartRound();
         }
 
         static void DisplayCurrentPosition()
@@ -106,13 +134,14 @@ namespace Space_Race
             {
                 if (SpaceRaceGame.Players[i].AtFinish == false)
                 {
-                    Console.WriteLine("{0} on square {1} with {2} unobtainium of power remaining", SpaceRaceGame.Players[i].Name, SpaceRaceGame.Players[i].Position, SpaceRaceGame.Players[i].RocketFuel);
+                    Console.WriteLine("\t{0} on square {1} with {2} unobtainium of power remaining", SpaceRaceGame.Players[i].Name, SpaceRaceGame.Players[i].Position, SpaceRaceGame.Players[i].RocketFuel);
                 }
             }
         } // prints status
 
         static int NumberOfPlayersInput()
         {
+
             Console.WriteLine("\n\tThis game is for 2 to 6 players.");
             Console.Write("\tHow many players? (2-6): ");
             int playerNum;
@@ -129,7 +158,16 @@ namespace Space_Race
 
         static void DisplayWinMessage(Player player)
         {
-            Console.WriteLine("\n{0} won\n", player.Name);
+            Console.WriteLine("\tThe following player(s) finished the game");
+            Console.WriteLine("\n\t\t{0}\n\t", player.Name);
+            Console.WriteLine("\tIndividual players finished at the locations specified\n");
+            for (int i = 0; i < SpaceRaceGame.Players.Count; i++)
+            {
+                if (SpaceRaceGame.Players[i].AtFinish == false)
+                {
+                    Console.WriteLine("\t\t{0} on square {1} with {2} unobtainium of power remaining", SpaceRaceGame.Players[i].Name, SpaceRaceGame.Players[i].Position, SpaceRaceGame.Players[i].RocketFuel);
+                }
+            }
         }
     }//end Console class
 }
