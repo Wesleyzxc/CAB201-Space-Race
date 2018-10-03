@@ -43,6 +43,11 @@ namespace Object_Classes
             }
         }
 
+        public static int[] special =
+        {
+            2, 3, 5, 12, 16, 29, 40, 45,
+            10, 26, 30, 35, 36, 49, 52, 53
+        }; // i created this
 
         /// <summary>
         ///  Eight Wormhole squares.
@@ -107,17 +112,17 @@ namespace Object_Classes
                     if (i == blackHoles[j, 0])
                     {
                         FindDestSquare(blackHoles, i, out next, out fuelConsumption);
-                        squares[i] = new BlackholeSquare("blackhole", i, next, fuelConsumption); //double check array format
+                        squares[i] = new BlackholeSquare(i.ToString(), i, next, fuelConsumption);
                         break;
                     }
                     else if (i == wormHoles[j, 0])
                     {
                         FindDestSquare(wormHoles, i, out next, out fuelConsumption);
-                        squares[i] = new WormholeSquare("wormhole", i, next, fuelConsumption);
+                        squares[i] = new WormholeSquare(i.ToString(), i, next, fuelConsumption);
                         break;
                     }
 
-                    else squares[i] = new Square("ordinary", i);
+                    else squares[i] = new Square(i.ToString(), i);
                 }
 
             }

@@ -1,10 +1,10 @@
 ﻿using System;
 //  Uncomment  this using statement after you have remove the large Block Comment below 
-//using System.Drawing;
+using System.Drawing;
 using System.Windows.Forms;
 using Game_Logic_Class;
 //  Uncomment  this using statement when you declare any object from Object Classes, eg Board,Square etc.
-//using Object_Classes;
+using Object_Classes;
 
 namespace GUI_Class
 {
@@ -24,10 +24,10 @@ namespace GUI_Class
         {
             InitializeComponent();
 
-            // Board.SetUpBoard();
-            // ResizeGUIGameBoard();
-            // SetUpGUIGameBoard();
-            // SetUpPlayersDataGridView
+            Board.SetUpBoard();
+            ResizeGUIGameBoard();
+            SetUpGUIGameBoard();
+            // SetUpPlayersDataGridView();
             // DetermineNumberOfPlayers();
             // SpaceRaceGame.SetUpPlayers();
             // PrepareToPlayGame();
@@ -54,7 +54,7 @@ namespace GUI_Class
         //        Likewise with "playerDataGridView" by your DataGridView (Name)
         //  ******************************************************************************************
 
-/*
+
         /// <summary>
         /// Resizes the entire form, so that the individual squares have their correct size, 
         /// as specified by SquareControl.SQUARE_SIZE.  
@@ -96,8 +96,7 @@ namespace GUI_Class
 
         private void AddControlToTableLayoutPanel(Control control, int squareNum)
         {
-            int screenRow = 0;
-            int screenCol = 0;
+            int screenRow = 0, screenCol = 0;
             MapSquareNumToScreenRowAndColumn(squareNum, out screenRow, out screenCol);
             tableLayoutPanel.Controls.Add(control, screenCol, screenRow);
         }// end Add Control
@@ -114,12 +113,14 @@ namespace GUI_Class
         /// <param name="columnNumber">The output column number.</param>
         private static void MapSquareNumToScreenRowAndColumn(int squareNum, out int screenRow, out int screenCol)
         {
-            // Code needs to be added here to do the mapping
+            int remainder;
+            screenRow = 6 - Convert.ToInt32(Math.Truncate(squareNum / 8.0));
 
-            // Makes the compiler happy - these two lines below need to deleted 
-            //    once mapping code is written above
-            screenRow = 0;
-            screenCol = 0;
+            remainder = squareNum % 8; // position from where it starts
+
+            if (screenRow % 2 == 0) screenCol = remainder;
+
+            else screenCol = 7 - remainder;
 
         }//end MapSquareNumToScreenRowAndColumn
 
@@ -132,7 +133,7 @@ namespace GUI_Class
             playersDataGridView.DataSource = SpaceRaceGame.Players;
 
         }// end SetUpPlayersDataGridView
-*/
+
 
 
         /// <summary>
@@ -180,16 +181,14 @@ namespace GUI_Class
         /// <returns>Returns the SquareControl object associated with the square number.</returns>
         private SquareControl SquareControlAt(int squareNum)
         {
-            int screenRow;
-            int screenCol;
+            int screenRow, screenCol;
 
             // Uncomment the following lines once you've added the tableLayoutPanel to your form. 
             //     and delete the "return null;" 
             //
-            // MapSquareNumToScreenRowAndColumn(squareNum, out screenRow, out screenCol);
-            // return (SquareControl)tableLayoutPanel.GetControlFromPosition(screenCol, screenRow);
+            MapSquareNumToScreenRowAndColumn(squareNum, out screenRow, out screenCol);
+            return (SquareControl)tableLayoutPanel.GetControlFromPosition(screenCol, screenRow);
 
-            return null; //added so code compiles
         }
 
 
@@ -220,8 +219,8 @@ namespace GUI_Class
         /// </summary>
         private void RefreshBoardTablePanelLayout()
         {
-            // Uncomment the following line once you've added the tableLayoutPanel to your form.
-            //      tableLayoutPanel.Invalidate(true);
+            //Uncomment the following line once you've added the tableLayoutPanel to your form.
+            tableLayoutPanel.Invalidate(true);
         }
 
         /// <summary>
@@ -265,6 +264,5 @@ namespace GUI_Class
 
             RefreshBoardTablePanelLayout();//must be the last line in this method. Do not put inside above loop.
         } //end UpdatePlayersGuiLocations
-
     }// end class
 }

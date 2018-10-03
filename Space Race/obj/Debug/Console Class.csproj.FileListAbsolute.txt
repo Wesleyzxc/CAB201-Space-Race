@@ -37,12 +37,12 @@ C:\QUT\CAB201\Space Race\CAB201-Space-Race\Space Race\obj\Debug\Console Class.cs
 D:\QUT\Sem 2\CAB201\Assignment1\Space Race\bin\Debug\Space Race.exe.config
 D:\QUT\Sem 2\CAB201\Assignment1\Space Race\bin\Debug\Space Race.exe
 D:\QUT\Sem 2\CAB201\Assignment1\Space Race\bin\Debug\Space Race.pdb
-D:\QUT\Sem 2\CAB201\Assignment1\Space Race\bin\Debug\Game Logic Class.dll
 D:\QUT\Sem 2\CAB201\Assignment1\Space Race\bin\Debug\Object Classes.dll
 D:\QUT\Sem 2\CAB201\Assignment1\Space Race\bin\Debug\Game Logic Class.pdb
 D:\QUT\Sem 2\CAB201\Assignment1\Space Race\bin\Debug\Object Classes.pdb
-D:\QUT\Sem 2\CAB201\Assignment1\Space Race\obj\Debug\Console Class.csprojAssemblyReference.cache
 D:\QUT\Sem 2\CAB201\Assignment1\Space Race\obj\Debug\Console Class.csproj.CoreCompileInputs.cache
 D:\QUT\Sem 2\CAB201\Assignment1\Space Race\obj\Debug\Console Class.csproj.CopyComplete
 D:\QUT\Sem 2\CAB201\Assignment1\Space Race\obj\Debug\Space Race.exe
 D:\QUT\Sem 2\CAB201\Assignment1\Space Race\obj\Debug\Space Race.pdb
+D:\QUT\Sem 2\CAB201\Assignment1\Space Race\obj\Debug\Console Class.csprojAssemblyReference.cache
+D:\QUT\Sem 2\CAB201\Assignment1\Space Race\bin\Debug\Game Logic Class.dll

@@ -86,16 +86,21 @@ namespace Game_Logic_Class
                         break;
                     }
                 }// end loop for check each squares
+                bool onSpecial = false;
+                for (int checkSpecial = 0; checkSpecial < Board.special.Length; checkSpecial++)
+                {
+                    if (players[i].Location.Number == Board.special[checkSpecial])
+                    {
+                        players[i].Location.LandOn(players[i]); // Square the player is on will run LandOn which updates location, position and remaining fuel
+                        onSpecial = true;
+                    }// if special hole
+                    
+                }
 
-                if (players[i].Location.Name == "ordinary")
+                if (onSpecial == false)
                 {
                     players[i].ConsumeFuel(2);
-                }// if ordinary hole 
-
-                else if (players[i].Location.Name == "wormhole" || players[i].Location.Name == "blackhole")
-                {
-                    players[i].Location.LandOn(players[i]); // Square the player is on will run LandOn which updates location, position and remaining fuel
-                }// if special hole
+                }// if ordinary hole
 
 
                 if (players[i].Position >= Board.FINISH_SQUARE_NUMBER)
