@@ -27,7 +27,7 @@ namespace GUI_Class
             Board.SetUpBoard();
             ResizeGUIGameBoard();
             SetUpGUIGameBoard();
-            // SetUpPlayersDataGridView();
+            SetupPlayersDataGridView();
             // DetermineNumberOfPlayers();
             // SpaceRaceGame.SetUpPlayers();
             // PrepareToPlayGame();
