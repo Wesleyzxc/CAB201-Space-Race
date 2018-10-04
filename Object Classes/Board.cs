@@ -107,7 +107,7 @@ namespace Object_Classes
             int next, fuelConsumption;
             for (int i = 1; i < (NUMBER_OF_SQUARES - 1); i++)
             {
-                for (int j = 0; j < blackHoles.GetLength(0) -1; j++)
+                for (int j = 0; j < blackHoles.GetLength(0); j++)
                 {
                     if (i == blackHoles[j, 0])
                     {
@@ -151,7 +151,7 @@ namespace Object_Classes
             destNum = 0; amount = 0;
 
             //  CODE NEEDS TO BE ADDED HERE  // DONE
-            for (int i = 0; i < holes.GetLength(0) -1; i++)
+            for (int i = 0; i < holes.GetLength(0); i++)
             {
                 if (squareNum == holes[i,0])
                 {
