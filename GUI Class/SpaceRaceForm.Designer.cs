@@ -124,7 +124,7 @@
             this.playersDataGridView.Location = new System.Drawing.Point(17, 124);
             this.playersDataGridView.Name = "playersDataGridView";
             this.playersDataGridView.RowHeadersVisible = false;
-            this.playersDataGridView.Size = new System.Drawing.Size(187, 127);
+            this.playersDataGridView.Size = new System.Drawing.Size(187, 174);
             this.playersDataGridView.TabIndex = 9;
             // 
             // playerTokenImageDataGridViewImageColumn
@@ -169,7 +169,7 @@
             this.singleStepgroupbox.Controls.Add(this.yesRadiobutton);
             this.singleStepgroupbox.Enabled = false;
             this.singleStepgroupbox.ForeColor = System.Drawing.Color.Black;
-            this.singleStepgroupbox.Location = new System.Drawing.Point(40, 280);
+            this.singleStepgroupbox.Location = new System.Drawing.Point(40, 322);
             this.singleStepgroupbox.Name = "singleStepgroupbox";
             this.singleStepgroupbox.Size = new System.Drawing.Size(140, 55);
             this.singleStepgroupbox.TabIndex = 8;
@@ -200,6 +200,7 @@
             // 
             // resetButton
             // 
+            this.resetButton.Enabled = false;
             this.resetButton.Location = new System.Drawing.Point(17, 626);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(75, 23);
@@ -215,6 +216,7 @@
             this.diceButton.TabIndex = 5;
             this.diceButton.Text = "Roll Dice";
             this.diceButton.UseVisualStyleBackColor = true;
+            this.diceButton.Click += new System.EventHandler(this.diceButton_Click);
             // 
             // numPlayersinput
             // 

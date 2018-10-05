@@ -28,9 +28,9 @@ namespace GUI_Class
             ResizeGUIGameBoard();
             SetUpGUIGameBoard();
             SetupPlayersDataGridView();
-            // DetermineNumberOfPlayers();
-            // SpaceRaceGame.SetUpPlayers();
-            // PrepareToPlayGame();
+            DetermineNumberOfPlayers();
+            SpaceRaceGame.SetUpPlayers();
+            PrepareToPlay();
         }
 
 
@@ -146,11 +146,11 @@ namespace GUI_Class
         private void DetermineNumberOfPlayers()
         {
             // Store the SelectedItem property of the ComboBox in a string
-
+            string userInput = numPlayersinput.SelectedItem.ToString();
             // Parse string to a number
-
+            int.TryParse(userInput, out int userInt);
             // Set the NumberOfPlayers in the SpaceRaceGame class to that number
-
+            SpaceRaceGame.NumberOfPlayers = userInt;
         }//end DetermineNumberOfPlayers
 
         /// <summary>
@@ -261,8 +261,27 @@ namespace GUI_Class
             //       using the typeOfGuiUpdate, update the appropriate element of 
             //          the ContainsPlayers array of the SquareControl object.
             //          
+            for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
+            {
+                int onSquare = SpaceRaceGame.Players[i].Position;
+                if (typeOfGuiUpdate == TypeOfGuiUpdate.AddPlayer) SquareControlAt(onSquare).ContainsPlayers[i] = true; // SquareControl object with that square number   
+
+                else if (typeOfGuiUpdate == TypeOfGuiUpdate.RemovePlayer) SquareControlAt(onSquare).ContainsPlayers[i] = false;
+            }
 
             RefreshBoardTablePanelLayout();//must be the last line in this method. Do not put inside above loop.
         } //end UpdatePlayersGuiLocations
+
+        private void diceButton_Click(object sender, EventArgs e)
+        {
+            UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer);
+            SpaceRaceGame.PlayOneRound();
+            UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
+            UpdatesPlayersDataGridView();
+            resetButton.Enabled = true; // disabled at the start, need to add event handler
+            exitButton.Enabled = false; // enabled at the start of a game, disabled during any round and enabled at the start of any round. NOT COMPLETE
+            playersDataGridView.Enabled = false;
+            numPlayersinput.Enabled = false; 
+        }
     }// end class
 }

@@ -66,6 +66,7 @@ namespace Game_Logic_Class
             {
                 players.Add(new Player(names[i])); // initialise and add to bindinglist
                 players[i].Location = Board.Squares[0];
+                players[i].PlayerTokenColour = playerTokenColours[i];
             }
         }
 
