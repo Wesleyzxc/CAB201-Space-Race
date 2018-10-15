@@ -151,6 +151,7 @@ namespace GUI_Class
             int.TryParse(userInput, out int userInt);
             // Set the NumberOfPlayers in the SpaceRaceGame class to that number
             SpaceRaceGame.NumberOfPlayers = userInt;
+            resetButton.Enabled = true;
         }//end DetermineNumberOfPlayers
 
         /// <summary>
@@ -158,14 +159,15 @@ namespace GUI_Class
         /// </summary>
         private void PrepareToPlay()
         {
-            // More code will be needed here to deal with restarting 
-            // a game after the Reset button has been clicked. 
-            //
-            // Leave this method with the single statement 
-            // until you can play a game through to the finish square
-            // and you want to implement the Reset button event handler.
-            //
-
+            UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer);
+            // Store the SelectedItem property of the ComboBox in a string
+            string userInput = numPlayersinput.SelectedItem.ToString();
+            // Parse string to a number
+            int.TryParse(userInput, out int userInt);
+            // Set the NumberOfPlayers in the SpaceRaceGame class to that number
+            SpaceRaceGame.NumberOfPlayers = userInt;
+            SpaceRaceGame.Players.Clear();
+            SpaceRaceGame.SetUpPlayers();
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
 
         }//end PrepareToPlay()
@@ -202,9 +204,8 @@ namespace GUI_Class
         private int GetSquareNumberOfPlayer(int playerNumber)
         {
             // Code needs to be added here.
-
+            return SpaceRaceGame.Players[playerNumber].Position;
             //     delete the "return -1;" once body of method has been written 
-            return -1;
         }//end GetSquareNumberOfPlayer
 
 
@@ -272,16 +273,126 @@ namespace GUI_Class
             RefreshBoardTablePanelLayout();//must be the last line in this method. Do not put inside above loop.
         } //end UpdatePlayersGuiLocations
 
+        private void disableAll()
+        {
+            exitButton.Enabled = false; // enabled at the start of a game, disabled during any round and enabled at the start of any round. NOT COMPLETE
+            playersDataGridView.Enabled = false;
+            numPlayersinput.Enabled = false;
+            singleStepgroupbox.Enabled = false;
+        }
+
+        int playerStep = 0;
+        private bool eachStep = true;
         private void diceButton_Click(object sender, EventArgs e)
+        {
+            if (yesRadiobutton.Checked == true)
+            {
+                singleStep(playerStep);
+                playerStep++;
+                if (playerStep == SpaceRaceGame.NumberOfPlayers)
+                {
+                    eachStep = true;
+                    playerStep = 0;
+                }
+            }
+
+            else
+            {
+                allStep();
+            }
+        }
+
+        private void singleStep(int playerNum)
+        {
+            int[] prevSquare = new int[SpaceRaceGame.NumberOfPlayers];
+            if (this.eachStep == true)
+            {
+                for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
+                {
+                    prevSquare[i] = SpaceRaceGame.Players[i].Position;
+                }
+                
+                SpaceRaceGame.PlayOneRound();
+                eachStep = false;
+            }
+            SquareControlAt(prevSquare[playerNum]).ContainsPlayers[playerNum] = false;
+            int onSquare = SpaceRaceGame.Players[playerNum].Position;
+            SquareControlAt(onSquare).ContainsPlayers[playerNum] = true;
+            UpdatesPlayersDataGridView();
+            RefreshBoardTablePanelLayout();
+            resetButton.Enabled = true;
+            disableAll();
+            EndGame();
+            WinnerMessage(EndGame());
+        }
+
+        private void allStep()
         {
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer);
             SpaceRaceGame.PlayOneRound();
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
             UpdatesPlayersDataGridView();
             resetButton.Enabled = true; // disabled at the start, need to add event handler
-            exitButton.Enabled = false; // enabled at the start of a game, disabled during any round and enabled at the start of any round. NOT COMPLETE
-            playersDataGridView.Enabled = false;
-            numPlayersinput.Enabled = false; 
+            disableAll();
+            EndGame();
+            WinnerMessage(EndGame());
         }
-    }// end class
+
+        private void resetButton_Click(object sender, EventArgs e)
+        {
+            PrepareToPlay();
+            numPlayersinput.Enabled = true;
+            singleStepgroupbox.Enabled = true;
+            exitButton.Enabled = true;
+            yesRadiobutton.Checked = false;
+            noRadiobutton.Checked = false;
+            
+        }
+
+        private string[] EndGame()
+        {
+            string[] winners = new string[6];
+           
+            for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
+            {
+                if (SpaceRaceGame.Players[i].Position == Board.FINISH_SQUARE_NUMBER)
+                {
+                    winners[i] = SpaceRaceGame.Players[i].Name;
+                    diceButton.Enabled = false;
+                    exitButton.Enabled = true;
+                    
+                }
+            }
+
+
+            return winners;            
+        }// end class
+
+        private void WinnerMessage(string[] winners)
+        {
+            for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
+            {
+                if (SpaceRaceGame.Players[i].Position == Board.FINISH_SQUARE_NUMBER)
+                {
+                    MessageBox.Show(string.Format("The following player(s) finished the game\n\t{0}", string.Join(Environment.NewLine, winners)));
+                    break;
+                }
+            }
+        }
+
+        private void yesRadiobutton_Click(object sender, EventArgs e)
+        {
+            diceButton.Enabled = true;
+        }
+
+        private void noRadiobutton_Click(object sender, EventArgs e)
+        {
+            diceButton.Enabled = true;
+        }
+
+        private void numPlayersinput_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PrepareToPlay();
+        }
+    }
 }

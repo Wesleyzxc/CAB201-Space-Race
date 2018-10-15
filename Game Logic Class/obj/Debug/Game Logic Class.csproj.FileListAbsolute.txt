@@ -11,7 +11,6 @@ C:\QUT\CAB201\Space Race\CAB201-Space-Race\Game Logic Class\bin\Debug\Game Logic
 C:\QUT\CAB201\Space Race\CAB201-Space-Race\Game Logic Class\bin\Debug\Game Logic Class.pdb
 C:\QUT\CAB201\Space Race\CAB201-Space-Race\Game Logic Class\bin\Debug\Object Classes.dll
 C:\QUT\CAB201\Space Race\CAB201-Space-Race\Game Logic Class\bin\Debug\Object Classes.pdb
-C:\QUT\CAB201\Space Race\CAB201-Space-Race\Game Logic Class\obj\Debug\Game Logic Class.csprojAssemblyReference.cache
 C:\QUT\CAB201\Space Race\CAB201-Space-Race\Game Logic Class\obj\Debug\Game Logic Class.csproj.CoreCompileInputs.cache
 C:\QUT\CAB201\Space Race\CAB201-Space-Race\Game Logic Class\obj\Debug\Game Logic Class.csproj.CopyComplete
 C:\QUT\CAB201\Space Race\CAB201-Space-Race\Game Logic Class\obj\Debug\Game Logic Class.dll
@@ -25,3 +24,4 @@ D:\QUT\Sem 2\CAB201\Assignment1\Game Logic Class\obj\Debug\Game Logic Class.cspr
 D:\QUT\Sem 2\CAB201\Assignment1\Game Logic Class\obj\Debug\Game Logic Class.dll
 D:\QUT\Sem 2\CAB201\Assignment1\Game Logic Class\obj\Debug\Game Logic Class.pdb
 D:\QUT\Sem 2\CAB201\Assignment1\Game Logic Class\obj\Debug\Game Logic Class.csprojAssemblyReference.cache
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Game Logic Class\obj\Debug\Game Logic Class.csprojAssemblyReference.cache

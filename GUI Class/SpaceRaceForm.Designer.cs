@@ -167,7 +167,6 @@
             this.singleStepgroupbox.BackColor = System.Drawing.SystemColors.ControlDark;
             this.singleStepgroupbox.Controls.Add(this.noRadiobutton);
             this.singleStepgroupbox.Controls.Add(this.yesRadiobutton);
-            this.singleStepgroupbox.Enabled = false;
             this.singleStepgroupbox.ForeColor = System.Drawing.Color.Black;
             this.singleStepgroupbox.Location = new System.Drawing.Point(40, 322);
             this.singleStepgroupbox.Name = "singleStepgroupbox";
@@ -186,6 +185,7 @@
             this.noRadiobutton.TabStop = true;
             this.noRadiobutton.Text = "No";
             this.noRadiobutton.UseVisualStyleBackColor = true;
+            this.noRadiobutton.Click += new System.EventHandler(this.noRadiobutton_Click);
             // 
             // yesRadiobutton
             // 
@@ -197,6 +197,7 @@
             this.yesRadiobutton.TabStop = true;
             this.yesRadiobutton.Text = "Yes";
             this.yesRadiobutton.UseVisualStyleBackColor = true;
+            this.yesRadiobutton.Click += new System.EventHandler(this.yesRadiobutton_Click);
             // 
             // resetButton
             // 
@@ -207,9 +208,11 @@
             this.resetButton.TabIndex = 6;
             this.resetButton.Text = "Game Reset";
             this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
             // 
             // diceButton
             // 
+            this.diceButton.Enabled = false;
             this.diceButton.Location = new System.Drawing.Point(63, 584);
             this.diceButton.Name = "diceButton";
             this.diceButton.Size = new System.Drawing.Size(75, 23);
@@ -232,6 +235,7 @@
             this.numPlayersinput.Size = new System.Drawing.Size(35, 21);
             this.numPlayersinput.TabIndex = 4;
             this.numPlayersinput.Text = "6";
+            this.numPlayersinput.SelectedIndexChanged += new System.EventHandler(this.numPlayersinput_SelectedIndexChanged);
             // 
             // playersLabel
             // 
