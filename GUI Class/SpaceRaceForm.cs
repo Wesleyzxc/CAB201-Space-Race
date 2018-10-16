@@ -13,7 +13,9 @@ namespace GUI_Class
         // The numbers of rows and columns on the screen.
         const int NUM_OF_ROWS = 7;
         const int NUM_OF_COLUMNS = 8;
-        int[] prevSquare;
+        private int[] prevSquare;
+        private int playerStep = 0;
+        private bool eachStep = true;
         // When we update what's on the screen, we show the movement of a player 
         // by removing them from their old square and adding them to their new square.
         // This enum makes it clear that we need to do both.
@@ -96,8 +98,7 @@ namespace GUI_Class
 
         private void AddControlToTableLayoutPanel(Control control, int squareNum)
         {
-            int screenRow = 0, screenCol = 0;
-            MapSquareNumToScreenRowAndColumn(squareNum, out screenRow, out screenCol);
+            MapSquareNumToScreenRowAndColumn(squareNum, out int screenRow, out int screenCol);
             tableLayoutPanel.Controls.Add(control, screenCol, screenRow);
         }// end Add Control
 
@@ -160,6 +161,13 @@ namespace GUI_Class
         private void PrepareToPlay()
         {
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer);
+            if (yesRadiobutton.Checked == true)
+            {
+                for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
+                {
+                    SquareControlAt(prevSquare[i]).ContainsPlayers[i] = false;
+                }
+            }
             // Store the SelectedItem property of the ComboBox in a string
             string userInput = numPlayersinput.SelectedItem.ToString();
             // Parse string to a number
@@ -169,7 +177,10 @@ namespace GUI_Class
             SpaceRaceGame.Players.Clear();
             prevSquare = new int[userInt];
             SpaceRaceGame.SetUpPlayers();
+            
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
+            
+            
 
         }//end PrepareToPlay()
 
@@ -184,12 +195,10 @@ namespace GUI_Class
         /// <returns>Returns the SquareControl object associated with the square number.</returns>
         private SquareControl SquareControlAt(int squareNum)
         {
-            int screenRow, screenCol;
-
             // Uncomment the following lines once you've added the tableLayoutPanel to your form. 
             //     and delete the "return null;" 
             //
-            MapSquareNumToScreenRowAndColumn(squareNum, out screenRow, out screenCol);
+            MapSquareNumToScreenRowAndColumn(squareNum, out int screenRow, out int screenCol);
             return (SquareControl)tableLayoutPanel.GetControlFromPosition(screenCol, screenRow);
 
         }
@@ -274,82 +283,87 @@ namespace GUI_Class
             RefreshBoardTablePanelLayout();//must be the last line in this method. Do not put inside above loop.
         } //end UpdatePlayersGuiLocations
 
-        private void disableAll()
+        private void ToggleAll(bool enable)
         {
-            exitButton.Enabled = false; // enabled at the start of a game, disabled during any round and enabled at the start of any round. NOT COMPLETE
-            playersDataGridView.Enabled = false;
-            numPlayersinput.Enabled = false;
-            singleStepgroupbox.Enabled = false;
+            exitButton.Enabled = enable; // enabled at the start of a game, disabled during any round and enabled at the start of any round. NOT COMPLETE
+            playersDataGridView.Enabled = enable;
+            numPlayersinput.Enabled = enable;
+            singleStepgroupbox.Enabled = enable;
         }
 
-        int playerStep = 0;
-        private bool eachStep = true;
-        private void diceButton_Click(object sender, EventArgs e)
+        
+        private void DiceButton_Click(object sender, EventArgs e)
         {
             if (yesRadiobutton.Checked == true)
             {
-                singleStep(playerStep);
+                SingleStep(playerStep);
                 playerStep++;
+                resetButton.Enabled = false;
+                exitButton.Enabled = false;
                 if (playerStep == SpaceRaceGame.NumberOfPlayers)
                 {
                     eachStep = true;
+                    resetButton.Enabled = true;
+                    exitButton.Enabled = true;
                     playerStep = 0;
+                    
                 }
             }
 
             if (noRadiobutton.Checked == true)
             {
-                allStep();
+                AllStep();
             }
         }
 
-        private void singleStep(int playerNum)
+        private void SingleStep(int playerNum)
         {
-            
             if (this.eachStep == true)
-            { 
+            {
                 for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
                 {
                     prevSquare[i] = SpaceRaceGame.Players[i].Position;
-                }
 
+                }
                 SpaceRaceGame.PlayOneRound();
-                
                 eachStep = false;
-            }
-            SquareControlAt(prevSquare[playerNum]).ContainsPlayers[playerNum] = false;
+            }// save prev position
+
+            if (SpaceRaceGame.Players[playerNum].RocketFuel != 0) SquareControlAt(prevSquare[playerNum]).ContainsPlayers[playerNum] = false; // remove token
+
             int onSquare = SpaceRaceGame.Players[playerNum].Position;
-            SquareControlAt(onSquare).ContainsPlayers[playerNum] = true;
+            if (SpaceRaceGame.Players[playerNum].RocketFuel != 0)  SquareControlAt(onSquare).ContainsPlayers[playerNum] = true; // add token
             UpdatesPlayersDataGridView();
             RefreshBoardTablePanelLayout();
             resetButton.Enabled = true;
-            disableAll();
+            ToggleAll(false);
             EndGame();
             WinnerMessage(EndGame());
+
         }
 
-        private void allStep()
+        private void AllStep()
         {
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.RemovePlayer);
             SpaceRaceGame.PlayOneRound();
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
             UpdatesPlayersDataGridView();
             resetButton.Enabled = true; // disabled at the start, need to add event handler
-            disableAll();
+            ToggleAll(false);
             EndGame();
             WinnerMessage(EndGame());
         }
 
-        private void resetButton_Click(object sender, EventArgs e)
+        private void ResetButton_Click(object sender, EventArgs e)
         {
             PrepareToPlay();
-            numPlayersinput.Enabled = true;
-            singleStepgroupbox.Enabled = true;
-            exitButton.Enabled = true;
-            diceButton.Enabled = true;
+            ToggleAll(true);
+
+            diceButton.Enabled = false;
             yesRadiobutton.Checked = false;
             noRadiobutton.Checked = false;
-            
+            eachStep = true;
+            playerStep = 0;
         }
 
         private string[] EndGame()
@@ -358,59 +372,68 @@ namespace GUI_Class
            
             for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
             {
-                if (SpaceRaceGame.Players[i].Position == Board.FINISH_SQUARE_NUMBER)
+                if (SquareControlAt(Board.FINISH_SQUARE_NUMBER).ContainsPlayers[i] == true)
                 {
                     winners[i] = SpaceRaceGame.Players[i].Name;
                     diceButton.Enabled = false;
                     exitButton.Enabled = true;
-                    
+                    yesRadiobutton.Checked = false;
+                    noRadiobutton.Checked = false;
                 }
             }
-
 
             return winners;            
         }// end class
 
+
         private void WinnerMessage(string[] winners)
         {
-            if (noRadiobutton.Checked == true)
+            if (noRadiobutton.Checked == true) // for all steps
             {
                 for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
                 {
-                    if (SpaceRaceGame.Players[i].Position == Board.FINISH_SQUARE_NUMBER)
+                    if (SquareControlAt(Board.FINISH_SQUARE_NUMBER).ContainsPlayers[i] == true)
                     {
                         MessageBox.Show(string.Format("The following player(s) finished the game\n\t{0}", string.Join(Environment.NewLine, winners)));
+                        exitButton.Enabled = true;
                         break;
                     }
                 }
             }
 
-            else 
+            else // for single step
             {
                 for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
                 {
-                    if (SpaceRaceGame.Players[i].Position == Board.FINISH_SQUARE_NUMBER)
+                    if (SquareControlAt(Board.FINISH_SQUARE_NUMBER).ContainsPlayers[i] == true)
                     {
-                        MessageBox.Show(string.Format("The following player(s) finished the game\n\t{0}", winners[0]));
+                        MessageBox.Show(string.Format("The following player(s) finished the game\n\t{0}", string.Join(Environment.NewLine, winners)));
+                        exitButton.Enabled = true;
                     }
                 }
-
             }
         }
 
-        private void yesRadiobutton_Click(object sender, EventArgs e)
+        private void SingleStepToggle()
         {
             diceButton.Enabled = true;
+            singleStepgroupbox.Enabled = false;
         }
 
-        private void noRadiobutton_Click(object sender, EventArgs e)
+        private void YesRadiobutton_Click(object sender, EventArgs e)
         {
-            diceButton.Enabled = true;
+            SingleStepToggle();
         }
 
-        private void numPlayersinput_SelectedIndexChanged(object sender, EventArgs e)
+        private void NoRadiobutton_Click(object sender, EventArgs e)
+        {
+            SingleStepToggle();
+        }
+
+        private void NumPlayersinput_SelectedIndexChanged(object sender, EventArgs e)
         {
             PrepareToPlay();
+            numPlayersinput.Enabled = false;
         }
     }
 }

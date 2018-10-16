@@ -121,10 +121,10 @@
             this.positionDataGridViewTextBoxColumn,
             this.rocketFuelDataGridViewTextBoxColumn});
             this.playersDataGridView.DataSource = this.playerBindingSource;
-            this.playersDataGridView.Location = new System.Drawing.Point(17, 124);
+            this.playersDataGridView.Location = new System.Drawing.Point(8, 124);
             this.playersDataGridView.Name = "playersDataGridView";
             this.playersDataGridView.RowHeadersVisible = false;
-            this.playersDataGridView.Size = new System.Drawing.Size(187, 174);
+            this.playersDataGridView.Size = new System.Drawing.Size(205, 174);
             this.playersDataGridView.TabIndex = 9;
             // 
             // playerTokenImageDataGridViewImageColumn
@@ -185,7 +185,7 @@
             this.noRadiobutton.TabStop = true;
             this.noRadiobutton.Text = "No";
             this.noRadiobutton.UseVisualStyleBackColor = true;
-            this.noRadiobutton.Click += new System.EventHandler(this.noRadiobutton_Click);
+            this.noRadiobutton.Click += new System.EventHandler(this.NoRadiobutton_Click);
             // 
             // yesRadiobutton
             // 
@@ -197,10 +197,11 @@
             this.yesRadiobutton.TabStop = true;
             this.yesRadiobutton.Text = "Yes";
             this.yesRadiobutton.UseVisualStyleBackColor = true;
-            this.yesRadiobutton.Click += new System.EventHandler(this.yesRadiobutton_Click);
+            this.yesRadiobutton.Click += new System.EventHandler(this.YesRadiobutton_Click);
             // 
             // resetButton
             // 
+            this.resetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.resetButton.Enabled = false;
             this.resetButton.Location = new System.Drawing.Point(17, 626);
             this.resetButton.Name = "resetButton";
@@ -208,10 +209,11 @@
             this.resetButton.TabIndex = 6;
             this.resetButton.Text = "Game Reset";
             this.resetButton.UseVisualStyleBackColor = true;
-            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
+            this.resetButton.Click += new System.EventHandler(this.ResetButton_Click);
             // 
             // diceButton
             // 
+            this.diceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.diceButton.Enabled = false;
             this.diceButton.Location = new System.Drawing.Point(63, 584);
             this.diceButton.Name = "diceButton";
@@ -219,7 +221,7 @@
             this.diceButton.TabIndex = 5;
             this.diceButton.Text = "Roll Dice";
             this.diceButton.UseVisualStyleBackColor = true;
-            this.diceButton.Click += new System.EventHandler(this.diceButton_Click);
+            this.diceButton.Click += new System.EventHandler(this.DiceButton_Click);
             // 
             // numPlayersinput
             // 
@@ -235,7 +237,7 @@
             this.numPlayersinput.Size = new System.Drawing.Size(35, 21);
             this.numPlayersinput.TabIndex = 4;
             this.numPlayersinput.Text = "6";
-            this.numPlayersinput.SelectedIndexChanged += new System.EventHandler(this.numPlayersinput_SelectedIndexChanged);
+            this.numPlayersinput.SelectedIndexChanged += new System.EventHandler(this.NumPlayersinput_SelectedIndexChanged);
             // 
             // playersLabel
             // 
@@ -268,6 +270,7 @@
             // 
             // exitButton
             // 
+            this.exitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitButton.Location = new System.Drawing.Point(119, 626);
             this.exitButton.Name = "exitButton";

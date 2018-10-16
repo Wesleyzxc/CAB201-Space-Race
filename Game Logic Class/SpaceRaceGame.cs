@@ -113,7 +113,7 @@ namespace Game_Logic_Class
                 if (players[i].RocketFuel == 0) // remove player when fuel is 0
                 {
                     System.Console.WriteLine("{0} is removed as there is zero fuel left.", players[i].Name);
-                    players.Remove(players[i]);
+                    //players.Remove(players[i]);
                 } // end remove player
 
             }// end loop for each player
