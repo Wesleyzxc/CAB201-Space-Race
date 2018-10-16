@@ -53,3 +53,18 @@ D:\QUT\Sem 2\CAB201\Assignment1\GUI Class\obj\Debug\GUI Class.pdb
 D:\QUT\Sem 2\CAB201\Assignment1\GUI Class\obj\Debug\GUI Class.csprojAssemblyReference.cache
 D:\QUT\Sem 2\CAB201\Assignment1\GUI Class\bin\Debug\Game Logic Class.dll
 D:\QUT\Sem 2\CAB201\Assignment1\GUI Class\bin\Debug\Game Logic Class.pdb
+D:\QUT\Sem 2\CAB201\Space Race\GUI Class\bin\Debug\GUI Class.exe.config
+D:\QUT\Sem 2\CAB201\Space Race\GUI Class\bin\Debug\GUI Class.exe
+D:\QUT\Sem 2\CAB201\Space Race\GUI Class\bin\Debug\GUI Class.pdb
+D:\QUT\Sem 2\CAB201\Space Race\GUI Class\bin\Debug\Game Logic Class.dll
+D:\QUT\Sem 2\CAB201\Space Race\GUI Class\bin\Debug\Object Classes.dll
+D:\QUT\Sem 2\CAB201\Space Race\GUI Class\bin\Debug\Game Logic Class.pdb
+D:\QUT\Sem 2\CAB201\Space Race\GUI Class\bin\Debug\Object Classes.pdb
+D:\QUT\Sem 2\CAB201\Space Race\GUI Class\obj\Debug\GUI Class.csprojAssemblyReference.cache
+D:\QUT\Sem 2\CAB201\Space Race\GUI Class\obj\Debug\GUI_Class.SpaceRaceForm.resources
+D:\QUT\Sem 2\CAB201\Space Race\GUI Class\obj\Debug\GUI_Class.Properties.Resources.resources
+D:\QUT\Sem 2\CAB201\Space Race\GUI Class\obj\Debug\GUI Class.csproj.GenerateResource.cache
+D:\QUT\Sem 2\CAB201\Space Race\GUI Class\obj\Debug\GUI Class.csproj.CoreCompileInputs.cache
+D:\QUT\Sem 2\CAB201\Space Race\GUI Class\obj\Debug\GUI Class.csproj.CopyComplete
+D:\QUT\Sem 2\CAB201\Space Race\GUI Class\obj\Debug\GUI Class.exe
+D:\QUT\Sem 2\CAB201\Space Race\GUI Class\obj\Debug\GUI Class.pdb

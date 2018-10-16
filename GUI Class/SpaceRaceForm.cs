@@ -13,7 +13,7 @@ namespace GUI_Class
         // The numbers of rows and columns on the screen.
         const int NUM_OF_ROWS = 7;
         const int NUM_OF_COLUMNS = 8;
-
+        int[] prevSquare;
         // When we update what's on the screen, we show the movement of a player 
         // by removing them from their old square and adding them to their new square.
         // This enum makes it clear that we need to do both.
@@ -167,6 +167,7 @@ namespace GUI_Class
             // Set the NumberOfPlayers in the SpaceRaceGame class to that number
             SpaceRaceGame.NumberOfPlayers = userInt;
             SpaceRaceGame.Players.Clear();
+            prevSquare = new int[userInt];
             SpaceRaceGame.SetUpPlayers();
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
 
@@ -296,7 +297,7 @@ namespace GUI_Class
                 }
             }
 
-            else
+            if (noRadiobutton.Checked == true)
             {
                 allStep();
             }
@@ -304,15 +305,16 @@ namespace GUI_Class
 
         private void singleStep(int playerNum)
         {
-            int[] prevSquare = new int[SpaceRaceGame.NumberOfPlayers];
+            
             if (this.eachStep == true)
-            {
+            { 
                 for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
                 {
                     prevSquare[i] = SpaceRaceGame.Players[i].Position;
                 }
-                
+
                 SpaceRaceGame.PlayOneRound();
+                
                 eachStep = false;
             }
             SquareControlAt(prevSquare[playerNum]).ContainsPlayers[playerNum] = false;
@@ -344,6 +346,7 @@ namespace GUI_Class
             numPlayersinput.Enabled = true;
             singleStepgroupbox.Enabled = true;
             exitButton.Enabled = true;
+            diceButton.Enabled = true;
             yesRadiobutton.Checked = false;
             noRadiobutton.Checked = false;
             
@@ -370,13 +373,28 @@ namespace GUI_Class
 
         private void WinnerMessage(string[] winners)
         {
-            for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
+            if (noRadiobutton.Checked == true)
             {
-                if (SpaceRaceGame.Players[i].Position == Board.FINISH_SQUARE_NUMBER)
+                for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
                 {
-                    MessageBox.Show(string.Format("The following player(s) finished the game\n\t{0}", string.Join(Environment.NewLine, winners)));
-                    break;
+                    if (SpaceRaceGame.Players[i].Position == Board.FINISH_SQUARE_NUMBER)
+                    {
+                        MessageBox.Show(string.Format("The following player(s) finished the game\n\t{0}", string.Join(Environment.NewLine, winners)));
+                        break;
+                    }
                 }
+            }
+
+            else 
+            {
+                for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
+                {
+                    if (SpaceRaceGame.Players[i].Position == Board.FINISH_SQUARE_NUMBER)
+                    {
+                        MessageBox.Show(string.Format("The following player(s) finished the game\n\t{0}", winners[0]));
+                    }
+                }
+
             }
         }
 
