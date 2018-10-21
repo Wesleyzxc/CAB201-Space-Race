@@ -348,11 +348,11 @@ namespace GUI_Class
             SpaceRaceGame.PlayOneRound();
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
             UpdatesPlayersDataGridView();
-            resetButton.Enabled = true; // disabled at the start, need to add event handler
+            resetButton.Enabled = true;
             ToggleAll(false);
             EndGame();
             WinnerMessage(EndGame());
-        }
+        } // no single step
 
         private void ResetButton_Click(object sender, EventArgs e)
         {
