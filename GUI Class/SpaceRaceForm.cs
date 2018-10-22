@@ -298,8 +298,7 @@ namespace GUI_Class
             {
                 SingleStep(playerStep);
                 playerStep++;
-                resetButton.Enabled = false;
-                exitButton.Enabled = false;
+                
                 if (playerStep == SpaceRaceGame.NumberOfPlayers)
                 {
                     eachStep = true;
@@ -308,6 +307,8 @@ namespace GUI_Class
                     playerStep = 0;
                     
                 }
+
+                
             }
 
             if (noRadiobutton.Checked == true)
@@ -325,19 +326,25 @@ namespace GUI_Class
                     prevSquare[i] = SpaceRaceGame.Players[i].Position;
 
                 }
-                SpaceRaceGame.PlayOneRound();
                 eachStep = false;
             }// save prev position
 
-            if (SpaceRaceGame.Players[playerNum].RocketFuel != 0) SquareControlAt(prevSquare[playerNum]).ContainsPlayers[playerNum] = false; // remove token
-
+            SquareControlAt(prevSquare[playerNum]).ContainsPlayers[playerNum] = false; // remove token
+            SpaceRaceGame.PlayOneTurn(playerNum);
+            if (SpaceRaceGame.Players[playerNum].RocketFuel == 0) MessageBox.Show(string.Format("{0} has 0 fuel.", SpaceRaceGame.Players[playerNum].Name));
             int onSquare = SpaceRaceGame.Players[playerNum].Position;
-            if (SpaceRaceGame.Players[playerNum].RocketFuel != 0)  SquareControlAt(onSquare).ContainsPlayers[playerNum] = true; // add token
+            SquareControlAt(onSquare).ContainsPlayers[playerNum] = true; // add token
             UpdatesPlayersDataGridView();
             RefreshBoardTablePanelLayout();
-            resetButton.Enabled = true;
+   
             ToggleAll(false);
+            for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
+            {
+                if (SpaceRaceGame.Players[i].Position == Board.FINISH_SQUARE_NUMBER) resetButton.Enabled = true;
+                else resetButton.Enabled = true;
+            } // enable after game ends
             EndGame();
+
             WinnerMessage(EndGame());
 
         }
@@ -394,8 +401,9 @@ namespace GUI_Class
                 {
                     if (SquareControlAt(Board.FINISH_SQUARE_NUMBER).ContainsPlayers[i] == true)
                     {
-                        MessageBox.Show(string.Format("The following player(s) finished the game\n\t{0}", string.Join(Environment.NewLine, winners)));
                         exitButton.Enabled = true;
+                        MessageBox.Show(string.Format("The following player(s) finished the game\n\t{0}", string.Join(Environment.NewLine, winners)));
+                        
                         break;
                     }
                 }

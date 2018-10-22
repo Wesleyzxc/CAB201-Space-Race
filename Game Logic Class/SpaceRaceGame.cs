@@ -78,7 +78,7 @@ namespace Game_Logic_Class
             for (int i = 0; i < players.Count; i++)
             {
 
-                players[i].Play(die1, die2);
+                if (players[i].RocketFuel != 0) players[i].Play(die1, die2);
                 for (int j = 0; j < Board.Squares.Length; j++)
                 {
                     if (Board.Squares[j].Number == players[i].Position)
@@ -117,6 +117,43 @@ namespace Game_Logic_Class
                 } // end remove player
 
             }// end loop for each player
+
+
+        }
+
+        public static void PlayOneTurn(int i)
+        {
+            if (players[i].RocketFuel != 0) players[i].Play(die1, die2);
+            for (int j = 0; j < Board.Squares.Length; j++)
+            {
+                if (Board.Squares[j].Number == players[i].Position)
+                {
+                    players[i].Location = Board.Squares[j];
+                    break;
+                }
+            }// end loop for check each squares
+            bool onUnique = false;
+            for (int checkUnique = 0; checkUnique < Board.special.Length; checkUnique++)
+            {
+                if (players[i].Location.Number == Board.special[checkUnique])
+                {
+                    players[i].Location.LandOn(players[i]); // Square the player is on will run LandOn which updates location, position and remaining fuel
+                    onUnique = true;
+                }// if special hole
+
+            }
+
+            if (onUnique == false)
+            {
+                players[i].ConsumeFuel(2);
+            }// if ordinary hole
+
+
+            if (players[i].Position >= Board.FINISH_SQUARE_NUMBER)
+            {
+                players[i].Position = Board.FINISH_SQUARE_NUMBER;
+                // add end game
+            }
 
 
         }
