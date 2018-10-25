@@ -77,49 +77,10 @@ namespace Game_Logic_Class
         {
             for (int i = 0; i < players.Count; i++)
             {
-
-                if (players[i].RocketFuel != 0) players[i].Play(die1, die2);
-                for (int j = 0; j < Board.Squares.Length; j++)
-                {
-                    if (Board.Squares[j].Number == players[i].Position)
-                    {
-                        players[i].Location = Board.Squares[j];
-                        break;
-                    }
-                }// end loop for check each squares
-                bool onSpecial = false;
-                for (int checkSpecial = 0; checkSpecial < Board.special.Length; checkSpecial++)
-                {
-                    if (players[i].Location.Number == Board.special[checkSpecial])
-                    {
-                        players[i].Location.LandOn(players[i]); // Square the player is on will run LandOn which updates location, position and remaining fuel
-                        onSpecial = true;
-                    }// if special hole
-                    
-                }
-
-                if (onSpecial == false)
-                {
-                    players[i].ConsumeFuel(2);
-                }// if ordinary hole
-
-
-                if (players[i].Position >= Board.FINISH_SQUARE_NUMBER)
-                {
-                    players[i].Position = Board.FINISH_SQUARE_NUMBER;
-                    // add end game
-                }
-
-                if (players[i].RocketFuel == 0) // remove player when fuel is 0
-                {
-                    System.Console.WriteLine("{0} is removed as there is zero fuel left.", players[i].Name);
-                    //players.Remove(players[i]);
-                } // end remove player
-
+                PlayOneTurn(i);
             }// end loop for each player
 
-
-        }
+        } // end PlayOneRound (Everybody)
 
         public static void PlayOneTurn(int i)
         {
@@ -155,8 +116,31 @@ namespace Game_Logic_Class
                 // add end game
             }
 
+            if (players[i].RocketFuel == 0) // remove player when fuel is 0
+            {
+                System.Console.WriteLine("{0} is removed as there is zero fuel left.", players[i].Name);
+            } // end remove player
 
-        }
+        } // end PlayOneTurn ( one player )
+
+        public static bool AllPlayerFuel()
+        {
+            int[] FuelCheck = new int[NumberOfPlayers];
+            int totalFuel = 0;
+
+            for (int i = 0; i < NumberOfPlayers; i++)
+            {
+                if (Players[i].RocketFuel == 0) FuelCheck[i] = 1;
+                else FuelCheck[i] = 0;
+                totalFuel += FuelCheck[i];
+            }
+
+
+            if (totalFuel == NumberOfPlayers) return true;
+
+            else return false;
+        } // end AllPlayerFuel() to check if all players still have fuel left
+
 
     }//end SnakesAndLadders
 }

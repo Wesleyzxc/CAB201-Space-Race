@@ -24,21 +24,12 @@ namespace Space_Race
             SpaceRaceGame.SetUpPlayers();
 
             StartRound();
-            string nextRound = YesNoInput();
-            while (nextRound == "Y" || nextRound == "y")
+            string nextRound = YesNoInput(); // store user's input
+            while (nextRound == "Y" || nextRound == "y") // Loop to check for next game
             {
                 NextGame();
                 nextRound = YesNoInput();
             }
-
-
-
-
-            //Console.WriteLine("\n\nPress Enter to play a round ...");
-            //Console.Read();
-            //SpaceRaceGame.PlayOneRound();
-            //Console.WriteLine("{0} on square {1} with {2} yottawatt of power remaining", SpaceRaceGame.Players[0].Name, SpaceRaceGame.Players[0].Position, SpaceRaceGame.Players[0].RocketFuel);
-            //Console.WriteLine("{0} on square {1} with {2} yottawatt of power remaining", SpaceRaceGame.Players[1].Name, SpaceRaceGame.Players[1].Position, SpaceRaceGame.Players[1].RocketFuel);
 
             /*                    
              Set up the board in Board class (Board.SetUpBoard)
@@ -53,8 +44,7 @@ namespace Space_Race
              Output each player's details at end of the game
            */
 
-
-            PressEnter();
+            PressEnter(); // Enter to terminate
             Console.Read();
 
         }//end Main
@@ -85,8 +75,7 @@ namespace Space_Race
         {
             bool playerState = false;
 
-
-            while (playerState == false)
+            while (playerState == false) // while no one player has won yet
             {
                 Console.WriteLine("\n\nPress Enter to play a round ...");
                 Console.Read();
@@ -97,24 +86,30 @@ namespace Space_Race
                     {
                         DisplayWinMessage(SpaceRaceGame.Players[i]);
                         playerState = true;
-                        break;
+                        break; // end if any player wins
+                    }
+
+                    else if (SpaceRaceGame.AllPlayerFuel() == true)
+                    {
+                        playerState = true;
+                        break; // end if all player has 0 fuel
                     }
 
                 }
 
-                if (playerState == false) DisplayCurrentPosition();
+                if (playerState == false) DisplayCurrentPosition(); // to prevent repeated displays
                 
                 Console.Read();
 
             }
-        }
+        } // End StartRound() 
 
         static string YesNoInput()
         {
             Console.Write("\n\n\n\n\tPlay again? (Y or N): ");
             string nextRound = Console.ReadLine();
             return nextRound;
-        }
+        } // end YesNoInput() returns user's input
 
 
         static void NextGame()
@@ -122,11 +117,12 @@ namespace Space_Race
             SpaceRaceGame.NumberOfPlayers = NumberOfPlayersInput();
             for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
             {
-                SpaceRaceGame.Players.Clear();
+                SpaceRaceGame.Players.Clear(); // remove player for a new set
             }
-            SpaceRaceGame.SetUpPlayers();
+            SpaceRaceGame.SetUpPlayers(); // sets up accordingly once cleared
             StartRound();
-        }
+
+        } // End NextGame() 
 
         static void DisplayCurrentPosition()
         {
@@ -135,26 +131,25 @@ namespace Space_Race
                 if (SpaceRaceGame.Players[i].AtFinish == false)
                 {
                     Console.WriteLine("\t{0} on square {1} with {2} unobtainium of power remaining", SpaceRaceGame.Players[i].Name, SpaceRaceGame.Players[i].Position, SpaceRaceGame.Players[i].RocketFuel);
-                }
+                } // print information if not won yet
             }
-        } // prints status
+        } // End DisplayCurrentPosition
 
         static int NumberOfPlayersInput()
         {
-
             Console.WriteLine("\n\tThis game is for 2 to 6 players.");
             Console.Write("\tHow many players? (2-6): ");
             int playerNum;
+
             while (int.TryParse(Console.ReadLine(), out playerNum) != true || playerNum < 2 || playerNum > 6)
             {
                 Console.WriteLine("\n\nError: invalid number of players entered.");
                 Console.WriteLine("\n\tThis game is for 2 to 6 players.");
                 Console.Write("\tHow many players? (2-6): ");
-
             }
-
-            return playerNum;
-        }
+             
+            return playerNum; // gets users' input on number of players
+        } // End NumberOfPlayersInput() 
 
         static void DisplayWinMessage(Player player)
         {
@@ -168,6 +163,6 @@ namespace Space_Race
                     Console.WriteLine("\t\t{0} on square {1} with {2} unobtainium of power remaining", SpaceRaceGame.Players[i].Name, SpaceRaceGame.Players[i].Position, SpaceRaceGame.Players[i].RocketFuel);
                 }
             }
-        }
+        } // End DisplayWinMessage() accepts an instance of Player and will display information of passed Player.
     }//end Console class
 }

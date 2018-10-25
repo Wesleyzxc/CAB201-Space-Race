@@ -20,3 +20,4 @@ D:\QUT\Sem 2\CAB201\Space Race\Object Classes\bin\Debug\Object Classes.pdb
 D:\QUT\Sem 2\CAB201\Space Race\Object Classes\obj\Debug\Object Classes.csproj.CoreCompileInputs.cache
 D:\QUT\Sem 2\CAB201\Space Race\Object Classes\obj\Debug\Object Classes.dll
 D:\QUT\Sem 2\CAB201\Space Race\Object Classes\obj\Debug\Object Classes.pdb
+C:\QUT\CAB201\Space Race\CAB201-Space-Race\Object Classes\obj\Debug\Object Classes.csprojAssemblyReference.cache

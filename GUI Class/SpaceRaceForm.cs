@@ -25,7 +25,6 @@ namespace GUI_Class
         public SpaceRaceForm()
         {
             InitializeComponent();
-
             Board.SetUpBoard();
             ResizeGUIGameBoard();
             SetUpGUIGameBoard();
@@ -41,11 +40,10 @@ namespace GUI_Class
         /// Pre:  the Exit button is clicked.
         /// Post: the game is terminated immediately
         /// </summary>
-        private void exitButton_Click(object sender, EventArgs e)
+        private void ExitButton_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
         }
-
 
 
         //  ******************* Uncomment - Remove Block Comment below
@@ -95,7 +93,7 @@ namespace GUI_Class
             }//endfor
 
         }// end SetupGameBoard
-
+        
         private void AddControlToTableLayoutPanel(Control control, int squareNum)
         {
             MapSquareNumToScreenRowAndColumn(squareNum, out int screenRow, out int screenCol);
@@ -181,7 +179,6 @@ namespace GUI_Class
             UpdatePlayersGuiLocations(TypeOfGuiUpdate.AddPlayer);
             
             
-
         }//end PrepareToPlay()
 
 
@@ -294,26 +291,46 @@ namespace GUI_Class
         
         private void DiceButton_Click(object sender, EventArgs e)
         {
-            if (yesRadiobutton.Checked == true)
+            if (yesRadiobutton.Checked == true) // allow single step
             {
                 SingleStep(playerStep);
                 playerStep++;
-                
+
                 if (playerStep == SpaceRaceGame.NumberOfPlayers)
                 {
                     eachStep = true;
                     resetButton.Enabled = true;
                     exitButton.Enabled = true;
-                    playerStep = 0;
-                    
+                    playerStep = 0; // reset to first player's turn
                 }
 
-                
+                else
+                {
+                    for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
+                    {
+                        if (SpaceRaceGame.Players[i].Position == Board.FINISH_SQUARE_NUMBER)
+                        {
+                            resetButton.Enabled = true;
+                            break;
+                        }
+
+                        else resetButton.Enabled = false;
+                    } // enable after game ends;
+
+                }
+
             }
 
             if (noRadiobutton.Checked == true)
             {
-                AllStep();
+                AllStep(); // all move at once
+            }
+
+            if (SpaceRaceGame.AllPlayerFuel() == true)
+            {
+                MessageBox.Show("All players has 0 fuel."); // if all players run out of fuel 
+                exitButton.Enabled = true;
+                diceButton.Enabled = false;
             }
         }
 
@@ -327,27 +344,24 @@ namespace GUI_Class
 
                 }
                 eachStep = false;
-            }// save prev position
+            }// save previous position
 
             SquareControlAt(prevSquare[playerNum]).ContainsPlayers[playerNum] = false; // remove token
             SpaceRaceGame.PlayOneTurn(playerNum);
-            if (SpaceRaceGame.Players[playerNum].RocketFuel == 0) MessageBox.Show(string.Format("{0} has 0 fuel.", SpaceRaceGame.Players[playerNum].Name));
+
+            if (SpaceRaceGame.Players[playerNum].RocketFuel == 0) MessageBox.Show(string.Format("{0} has 0 fuel.", SpaceRaceGame.Players[playerNum].Name)); // check for 0 fuel
             int onSquare = SpaceRaceGame.Players[playerNum].Position;
             SquareControlAt(onSquare).ContainsPlayers[playerNum] = true; // add token
-            UpdatesPlayersDataGridView();
+            UpdatesPlayersDataGridView(); // update all
             RefreshBoardTablePanelLayout();
    
             ToggleAll(false);
-            for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
-            {
-                if (SpaceRaceGame.Players[i].Position == Board.FINISH_SQUARE_NUMBER) resetButton.Enabled = true;
-                else resetButton.Enabled = true;
-            } // enable after game ends
+
             EndGame();
 
             WinnerMessage(EndGame());
 
-        }
+        } // end SingleStep() method
 
         private void AllStep()
         {
@@ -371,7 +385,7 @@ namespace GUI_Class
             noRadiobutton.Checked = false;
             eachStep = true;
             playerStep = 0;
-        }
+        } // end Reset Button.
 
         private string[] EndGame()
         {
@@ -379,32 +393,33 @@ namespace GUI_Class
            
             for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
             {
-                if (SquareControlAt(Board.FINISH_SQUARE_NUMBER).ContainsPlayers[i] == true)
+                if (SquareControlAt(Board.FINISH_SQUARE_NUMBER).ContainsPlayers[i] == true) // check if players finished
                 {
-                    winners[i] = SpaceRaceGame.Players[i].Name;
+                    winners[i] = SpaceRaceGame.Players[i].Name; // store winners' names
                     diceButton.Enabled = false;
                     exitButton.Enabled = true;
-                    yesRadiobutton.Checked = false;
-                    noRadiobutton.Checked = false;
+                    
                 }
             }
 
             return winners;            
-        }// end class
+        }// end EndGame
 
 
         private void WinnerMessage(string[] winners)
         {
+            
             if (noRadiobutton.Checked == true) // for all steps
             {
+                
                 for (int i = 0; i < SpaceRaceGame.NumberOfPlayers; i++)
                 {
                     if (SquareControlAt(Board.FINISH_SQUARE_NUMBER).ContainsPlayers[i] == true)
                     {
                         exitButton.Enabled = true;
                         MessageBox.Show(string.Format("The following player(s) finished the game\n\t{0}", string.Join(Environment.NewLine, winners)));
-                        
-                        break;
+                        noRadiobutton.Checked = false;
+                        break; // prevent multiple messageboxes for multiple winners
                     }
                 }
             }
@@ -417,10 +432,14 @@ namespace GUI_Class
                     {
                         MessageBox.Show(string.Format("The following player(s) finished the game\n\t{0}", string.Join(Environment.NewLine, winners)));
                         exitButton.Enabled = true;
+                        resetButton.Enabled = true;
+                        yesRadiobutton.Checked = false;
                     }
                 }
+                
             }
-        }
+
+        } // end WinnerMessage to show winners
 
         private void SingleStepToggle()
         {
@@ -431,7 +450,7 @@ namespace GUI_Class
         private void YesRadiobutton_Click(object sender, EventArgs e)
         {
             SingleStepToggle();
-        }
+        } 
 
         private void NoRadiobutton_Click(object sender, EventArgs e)
         {
@@ -443,5 +462,6 @@ namespace GUI_Class
             PrepareToPlay();
             numPlayersinput.Enabled = false;
         }
+
     }
 }

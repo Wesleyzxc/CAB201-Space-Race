@@ -47,7 +47,7 @@ namespace Object_Classes
         {
             2, 3, 5, 12, 16, 29, 40, 45,
             10, 26, 30, 35, 36, 49, 52, 53
-        }; // i created this
+        }; // Square numbers of all warmhole and blackhole squares
 
         /// <summary>
         ///  Eight Wormhole squares.
@@ -147,23 +147,20 @@ namespace Object_Classes
         /// <param name="destNum"> destination square's number</param>
         /// <param name="amount"> amount of fuel used to jump to the destination square</param>
         private static void FindDestSquare(int[,] holes, int squareNum, out int destNum, out int amount) {
-            const int start = 0, exit = 1, fuel = 2;
+            const int fuel = 2;
             destNum = 0; amount = 0;
 
             //  CODE NEEDS TO BE ADDED HERE  // DONE
-            for (int i = 0; i < holes.GetLength(0); i++)
+            for (int i = 0; i < holes.GetLength(0); i++) // size of 2d array of non-ordinary holes
             {
-                if (squareNum == holes[i,0])
+                if (squareNum == holes[i,0]) // if wormhole or blackhole
                 {
-                    destNum = holes[i, 1];
-                    amount = holes[i, 2];
+                    destNum = holes[i, 1]; // updates destination number
+                    amount = holes[i, 2]; // updates fuel used
                     break;
                 }
 
-                else
-                {
-                    amount = fuel;
-                }
+                else amount = fuel;
             }
 
         } //end FindDestSquare
